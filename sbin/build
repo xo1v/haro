@@ -6,8 +6,10 @@ cat > $hr/sbin/haro <<EOF
 #!/bin/sh
 
 print_usage() {
-    echo "Usage: haro <subcommand>"
-    echo "Available subcommands:"
+    echo "Missing operand"
+    echo "Usage: haro <subcommand> <param>"
+    echo
+    echo "Subcommand list:"
     printf '  %s\n' $(compgen -c haro- | sed 's/^haro-//' | sort | uniq)
     echo "  help"
   }
@@ -37,9 +39,63 @@ cat > $hr/sbin/haro-set <<EOF
 haro_set() {
   echo "Missing parameter!"
   echo "Usage: haro set [parameter] [0 / 1]"
-  echo "command incomplete.."
 }
 
 haro_set
+EOF
+# ---------------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------------
+touch $hr/sbin/haro-info
+cat > $hr/sbin/haro-info <<EOF
+#!/bin/sh
+
+export HARO=/private/var/root/haro
+
+echo
+echo " haro ฅ^•ﻌ•^ฅ"
+echo " v1.0.1 (dev release)"
+echo " + The boosted superuser for macOS +"
+echo
+echo " directory: $HARO"
+echo
+echo " made by @xo1v"
+echo " https://github.com/xo1v"
+echo
+EOF
+# ---------------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------------
+touch $hr/sbin/haro-source
+cat > $hr/sbin/haro-source <<EOF
+#!/bin/sh
+
+echo "Opening in new Safari tab..."
+open -n -a Safari https://github.com/xo1v/haro
+EOF
+# ---------------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------------
+touch $hr/sbin/haro-su
+cat > $hr/sbin/haro-su <<EOF
+#!/bin/sh
+
+su
+EOF
+# ---------------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------------
+touch $hr/sbin/programmedrecoveryreboot
+cat > $hr/sbin/programmedrecoveryreboot <<EOF
+#!/bin/bash
+
+sudo command
+
+echo "Rebooting into recoveryOS (non-1TR) in 5s"
+sleep 5
+
+# recoveryOS reboot (non-1TR)
+nvram "recovery-boot-mode=unused"
+reboot
 EOF
 # ---------------------------------------------------------------------------------
