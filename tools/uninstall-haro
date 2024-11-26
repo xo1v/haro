@@ -12,8 +12,8 @@ echo " WARNING: It is NOT recommended to use this script."
 echo " If you proceed, you are aware of the possibility of"
 echo " unmeant files being deleted if something goes terribly"
 echo " wrong."
-echo "Everything will go right if you properly installed haro."
-echo "This is just a warning for those who did 'weird stuff'."
+echo " Everything will go right if you properly installed haro."
+echo " This is just a warning for those who did 'weird stuff'."
 
 echo
 echo "  HEY! Uninstalling haro will do the following:"
