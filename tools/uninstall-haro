@@ -1,8 +1,7 @@
 #!/bin/sh
 
-echo " This script must be run as root."
-echo " Please enter your password if prompted to do so."
-sudo echo " > success"
+echo " This script must be run as the root account."
+echo " Please login using su / su root"
 
 clear
 
