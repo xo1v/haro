@@ -3,12 +3,10 @@ hr=$r/haro
 # ---------------------------------------------------------------------------------
 touch $hr/sbin/haro
 cat > $hr/sbin/haro <<EOF
-#!/bin/sh
-
 print_usage() {
     echo "Usage: haro <subcommand>"
     echo "Available subcommands:"
-    printf '  %s\n' '$(compgen -c haro- | sed 's/^haro-//' | sort | uniq)'
+    printf '  %s\n' $(compgen -c haro- | sed 's/^haro-//' | sort | uniq)
     echo "  help"
   }
 
@@ -24,8 +22,6 @@ EOF
 # ---------------------------------------------------------------------------------
 touch $hr/sbin/haro-set
 cat > $hr/sbin/haro-set <<EOF
-#!/bin/sh
-
 haro_set() {
   echo "Missing parameter!"
   echo "Usage: haro set [parameter] [0 / 1]"
