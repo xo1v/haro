@@ -22,17 +22,16 @@ echo " ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~- "
 echo " files to be altered:"
 echo "   # /private/var/root/haro > deleted"
 echo "   # /etc/pam.d/su > restored"
-echo "   # /etc/sudoers > restored"
 echo "   # /private/var/root/.zshrc > deleted"
 echo
 echo " other changes:"
 echo "   # /Groups/sysadm > deleted"
 echo "   # root user > disabled (can be reenabled as usual)"
-echo "   # /private/var/root/*/... > read-only"
+echo "   # /private/var/root/*/... > no access"
 
 echo
-echo "Starting operation in 30s. Ctrl-C to cancel."
-sleep 30
+echo "Starting operation in 40s. Ctrl-C to cancel."
+sleep 40
 
 echo " - starting process"
 # -------------------------------------------
@@ -49,3 +48,7 @@ unlink /private/var/root/haro/pam.d/su
 rm -rf /private/var/root/haro
 rm -f /private/var/root/.zshrc
 dscl . delete /Groups/sysadm
+chmod 666 /private/var/root/*
+chmod 666 /private/var/root/Library/*
+chmod 666 /private/var/root/Library/*
+dsenableroot -d
