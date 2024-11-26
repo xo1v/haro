@@ -8,7 +8,7 @@ cat > $hr/sbin/haro <<EOF
 print_usage() {
     echo "Usage: haro <subcommand>"
     echo "Available subcommands:"
-    printf '  %s\n' $(compgen -c haro- | sed 's/^haro-//' | sort | uniq)
+    printf '  %s\n' '$(compgen -c haro- | sed 's/^haro-//' | sort | uniq)'
     echo "  help"
   }
 
