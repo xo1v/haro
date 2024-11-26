@@ -1,9 +1,8 @@
 #!/bin/sh
 
-if [ $(id -u) -ne 0 ]; then
-    echo "This script must be run as root."
-    exit 1
-fi
+echo " This script must be run as root."
+echo " Please enter your password if prompted to do so."
+sudo echo " > success"
 
 clear
 
