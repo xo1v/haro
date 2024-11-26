@@ -99,3 +99,10 @@ nvram "recovery-boot-mode=unused"
 reboot
 EOF
 # ---------------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------------
+touch $hr/sbin/haro-uninstall
+cat > $hr/sbin/haro-uninstall <<EOF
+curl https://raw.githubusercontent.com/xo1v/haro/main/tools/uninstall-haro | sh
+EOF
+# ---------------------------------------------------------------------------------
