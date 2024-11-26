@@ -3,6 +3,7 @@ root.config.promptaccess 1
 root.config.denyaccess 0
 root.config.prootallowed 1
 root.config.requirepassword 1
+root.config.contextenabled 0
 root.permissions.sufficient 1
 root.permissions.systemrw 0
 root.permissions.mdvol 0
@@ -17,5 +18,7 @@ su.pamd.wheel 1
 su.pamd.sysadm 1
 su.pamd.c.nw 1
 su.lib.altcid 0
+haro.config.createbackups 0
 haro.config.channel.debug 0
 haro.config.opm.root 1
+haro.config.opm.hide 0
