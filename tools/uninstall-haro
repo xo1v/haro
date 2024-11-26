@@ -1,0 +1,50 @@
+#!/bin/sh
+
+if [ $(id -u) -ne 0 ]; then
+    echo "This script must be run as root."
+    exit 1
+fi
+
+clear
+
+echo
+echo " WARNING: It is NOT recommended to use this script."
+echo " If you proceed, you are aware of the possibility of"
+echo " unmeant files being deleted if something goes terribly"
+echo " wrong."
+echo "Everything will go right if you properly installed haro."
+echo "This is just a warning for those who did 'weird stuff'."
+
+echo
+echo "  HEY! Uninstalling haro will do the following:"
+echo " ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~- "
+echo " files to be altered:"
+echo "   # /private/var/root/haro > deleted"
+echo "   # /etc/pam.d/su > restored"
+echo "   # /etc/sudoers > restored"
+echo "   # /private/var/root/.zshrc > deleted"
+echo
+echo " other changes:"
+echo "   # /Groups/sysadm > deleted"
+echo "   # root user > disabled (can be reenabled as usual)"
+echo "   # /private/var/root/*/... > read-only"
+
+echo
+echo "Starting operation in 30s. Ctrl-C to cancel."
+sleep 30
+
+echo " - starting process"
+# -------------------------------------------
+cat > /private/var/root/haro/pam.d/su <<EOF
+# su: auth account session
+auth       sufficient     pam_rootok.so 
+auth       required       pam_opendirectory.so
+account    required       pam_group.so no_warn group=admin,wheel ruser root_only fail_safe
+account    required       pam_opendirectory.so no_check_shell
+password   required       pam_opendirectory.so
+session    required       pam_launchd.so
+EOF
+unlink /private/var/root/haro/pam.d/su
+rm -rf /private/var/root/haro
+rm -f /private/var/root/.zshrc
+dscl . delete /Groups/sysadm
