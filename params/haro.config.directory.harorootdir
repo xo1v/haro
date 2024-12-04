@@ -1,5 +1,6 @@
 #!/bin/sh
-# /haro create script
+set -eu
+set -o pipefail
 
 if [ -e ~/systemdir ]; then
 rm -rf ~/systemdir
@@ -16,6 +17,7 @@ sudo ln -s /private/var/root/haro ~/systemdir/haro
 sudo bless --mount ~/systemdir/System/Library/CoreServices \
 --bootefi --create-snapshot
 
-echo "Rebooting in 3s! (may reboot onto recoveryOS)"
+echo "Rebooting in 3s!"
+sleep 3
 nvram "recovery-boot-mode=unused"
 sudo reboot
