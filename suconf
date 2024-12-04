@@ -30,7 +30,7 @@ pam.su.lib.altcid 0
 haro.config.createbackups 0
 haro.config.channel.debug 0
 haro.config.enablelogs 1
-haro.config.directory.harorootdir 1
+haro.config.directory.harorootdir 0
 haro.config.opm.root 1
 haro.config.opm.hide 0
 haro.config.blacklist 0
