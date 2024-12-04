@@ -1,0 +1,21 @@
+#!/bin/sh
+# /haro create script
+
+if [ -e ~/systemdir ]; then
+rm -rf ~/systemdir
+fi
+mkdir ~/systemdir
+
+mount | awk '/sealed/ {print substr($1, 1, length($1)-2)}' | while read awk; do
+sudo /sbin/mount -o nobrowse -t apfs $awk ~/systemdir
+done
+
+sudo mkdir ~/systemdir/haro
+sudo ln -s /private/var/root/haro ~/systemdir/haro
+
+sudo bless --mount ~/systemdir/System/Library/CoreServices \
+--bootefi --create-snapshot
+
+echo "Rebooting in 3s! (may reboot onto recoveryOS)"
+nvram "recovery-boot-mode=unused"
+sudo reboot
